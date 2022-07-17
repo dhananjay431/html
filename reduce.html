@@ -1,0 +1,99 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var min = Math.min(...[1, 2, 3, 4, 5]);
+        console.log(min);
+        var max = Math.max(...[1, 2, 3, 4, 5, 6]);
+        console.log(max);
+        var arr = [{ "city": "http://lorempixel.com/640/480/city", "product": "Tuna", "user": { "firstName": "Geraldine", "lastName": "Mosciski", "findName": "Ms. Terrill Hermiston" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Car", "user": { "firstName": "Marion", "lastName": "Wuckert", "findName": "Ferne Weissnat" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Sausages", "user": { "firstName": "Santino", "lastName": "Watsica", "findName": "Ova Heathcote PhD" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Soap", "user": { "firstName": "Larissa", "lastName": "Padberg", "findName": "Gregg Marvin" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Ball", "user": { "firstName": "Ezekiel", "lastName": "Schinner", "findName": "Wilbert Heathcote" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Towels", "user": { "firstName": "Shirley", "lastName": "O'Conner", "findName": "Luciano Yost" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Salad", "user": { "firstName": "Dakota", "lastName": "Schultz", "findName": "Tod Jacobs" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Shoes", "user": { "firstName": "Kathryne", "lastName": "Weber", "findName": "Mr. Providenci Schowalter" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Keyboard", "user": { "firstName": "Warren", "lastName": "Wintheiser", "findName": "Sallie Welch" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chicken", "user": { "firstName": "Simeon", "lastName": "Friesen", "findName": "Astrid Hauck III" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bike", "user": { "firstName": "Kayli", "lastName": "Cormier", "findName": "Mr. Shakira Lemke" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Ball", "user": { "firstName": "Talon", "lastName": "Johns", "findName": "Darion Reynolds" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pants", "user": { "firstName": "Blair", "lastName": "Goodwin", "findName": "Georgiana Von" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Car", "user": { "firstName": "Josh", "lastName": "Walter", "findName": "Margarette Stark" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pants", "user": { "firstName": "Immanuel", "lastName": "Leffler", "findName": "Kaitlyn Jacobi" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Okey", "lastName": "Blick", "findName": "Charity Nikolaus" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Towels", "user": { "firstName": "Skye", "lastName": "Feest", "findName": "Claudie Williamson" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chicken", "user": { "firstName": "Erna", "lastName": "Friesen", "findName": "Aylin Vandervort" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pants", "user": { "firstName": "Raquel", "lastName": "Kutch", "findName": "Miss Hassie Mueller" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Towels", "user": { "firstName": "Clara", "lastName": "Murray", "findName": "Bernhard Bosco" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pants", "user": { "firstName": "Payton", "lastName": "Watsica", "findName": "Jeromy Aufderhar" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Soap", "user": { "firstName": "Delphia", "lastName": "Lowe", "findName": "Juston Grant" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Salad", "user": { "firstName": "Brian", "lastName": "Davis", "findName": "Elody O'Reilly" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chips", "user": { "firstName": "Ike", "lastName": "Williamson", "findName": "Magali Streich" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Fish", "user": { "firstName": "Burley", "lastName": "Effertz", "findName": "Elsie Kulas" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Computer", "user": { "firstName": "Jaylin", "lastName": "Herzog", "findName": "Elsie Wolf" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bike", "user": { "firstName": "Ellen", "lastName": "Jaskolski", "findName": "Johnathon Swift" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chicken", "user": { "firstName": "Jalen", "lastName": "Gottlieb", "findName": "Dallas O'Conner" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Soap", "user": { "firstName": "Rebecca", "lastName": "Ortiz", "findName": "Aylin Mayer" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chips", "user": { "firstName": "Daren", "lastName": "Watsica", "findName": "Ms. Amara Gleason" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pizza", "user": { "firstName": "Leilani", "lastName": "Dibbert", "findName": "Alfreda Cremin" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Keyboard", "user": { "firstName": "Dock", "lastName": "Runolfsdottir", "findName": "Malachi Thompson II" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Fish", "user": { "firstName": "Alf", "lastName": "Gorczany", "findName": "Candice Gaylord" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Computer", "user": { "firstName": "Erica", "lastName": "Frami", "findName": "Gregg Fadel IV" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Cheese", "user": { "firstName": "Carole", "lastName": "Stamm", "findName": "Ms. Easton Rohan" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Gloves", "user": { "firstName": "Orlando", "lastName": "Padberg", "findName": "Alta Denesik" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bike", "user": { "firstName": "Virgie", "lastName": "Kessler", "findName": "Roger Ledner III" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Soap", "user": { "firstName": "Crystel", "lastName": "Heathcote", "findName": "Dan Klein" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Soap", "user": { "firstName": "Zachary", "lastName": "Heathcote", "findName": "Nicole Wisozk" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Moriah", "lastName": "Kris", "findName": "Rosalia Dietrich" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chicken", "user": { "firstName": "Mose", "lastName": "Kris", "findName": "Mr. Savanah Smitham" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Mouse", "user": { "firstName": "Yasmin", "lastName": "Cormier", "findName": "Michel Johnson" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bacon", "user": { "firstName": "Jace", "lastName": "Hermiston", "findName": "Cecil Collins II" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Keyboard", "user": { "firstName": "Ludie", "lastName": "Medhurst", "findName": "Mallie Strosin DDS" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Soap", "user": { "firstName": "Pierre", "lastName": "McClure", "findName": "Willie Reilly DVM" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bacon", "user": { "firstName": "Kellie", "lastName": "Abshire", "findName": "Dr. Olga Ortiz" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Cheese", "user": { "firstName": "Douglas", "lastName": "Zulauf", "findName": "General Lebsack III" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Darrick", "lastName": "Stehr", "findName": "Erwin Cronin" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Keyboard", "user": { "firstName": "Clementina", "lastName": "Jacobi", "findName": "Brody Kunde" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bacon", "user": { "firstName": "Cale", "lastName": "Jerde", "findName": "Palma Kuvalis" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Car", "user": { "firstName": "Ed", "lastName": "Batz", "findName": "Darryl Hudson" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pants", "user": { "firstName": "Jaiden", "lastName": "Kiehn", "findName": "Viola Hills" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Shoes", "user": { "firstName": "Estel", "lastName": "Lehner", "findName": "Kaia Lind" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bacon", "user": { "firstName": "Sean", "lastName": "Torp", "findName": "Isabel MacGyver" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Hat", "user": { "firstName": "Colleen", "lastName": "Gutkowski", "findName": "Adolf O'Hara" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bacon", "user": { "firstName": "Murl", "lastName": "Barton", "findName": "Barton Kub" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Towels", "user": { "firstName": "Orland", "lastName": "Kuhlman", "findName": "Rosendo McClure" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Salad", "user": { "firstName": "Meggie", "lastName": "Hoppe", "findName": "Evan Mohr" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chicken", "user": { "firstName": "Benny", "lastName": "Murazik", "findName": "Murphy Farrell" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Mouse", "user": { "firstName": "Chloe", "lastName": "Lockman", "findName": "Loren Heathcote" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Bacon", "user": { "firstName": "Monty", "lastName": "Schulist", "findName": "Mustafa Shields" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Shirt", "user": { "firstName": "Aletha", "lastName": "Legros", "findName": "Ole Steuber IV" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pizza", "user": { "firstName": "Vivien", "lastName": "King", "findName": "Herman Larson IV" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Mouse", "user": { "firstName": "Arden", "lastName": "Yost", "findName": "Gloria O'Connell" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Table", "user": { "firstName": "Catharine", "lastName": "Frami", "findName": "Karl McCullough DDS" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Shoes", "user": { "firstName": "Rolando", "lastName": "Jones", "findName": "Angel Prohaska" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Salad", "user": { "firstName": "Katlyn", "lastName": "Balistreri", "findName": "Glenda Champlin" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pants", "user": { "firstName": "Delfina", "lastName": "Wunsch", "findName": "Bradley Prosacco" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Ball", "user": { "firstName": "Nicholaus", "lastName": "Stamm", "findName": "Cordia Schaefer" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chicken", "user": { "firstName": "Reilly", "lastName": "Weimann", "findName": "Rupert Lowe" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Dariana", "lastName": "Lindgren", "findName": "Mattie VonRueden III" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Hat", "user": { "firstName": "Wilford", "lastName": "Kuphal", "findName": "Haleigh Cummings" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Computer", "user": { "firstName": "Shania", "lastName": "Dare", "findName": "Nathan Steuber MD" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Shirt", "user": { "firstName": "Tessie", "lastName": "Hodkiewicz", "findName": "Cordie Tromp MD" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Reanna", "lastName": "Boyer", "findName": "Taya Metz" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Hat", "user": { "firstName": "Rowan", "lastName": "Renner", "findName": "Joan Skiles" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Mouse", "user": { "firstName": "Zaria", "lastName": "Gaylord", "findName": "Alexzander Kshlerin" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Car", "user": { "firstName": "Shyanne", "lastName": "Doyle", "findName": "Green Leannon" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Computer", "user": { "firstName": "Earlene", "lastName": "Marquardt", "findName": "Nolan D'Amore" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Fish", "user": { "firstName": "Gerda", "lastName": "Herman", "findName": "Kayleigh Lemke" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Table", "user": { "firstName": "Roberta", "lastName": "Quitzon", "findName": "Zula Daniel" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Mireille", "lastName": "Koss", "findName": "Jermaine Goldner PhD" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Shoes", "user": { "firstName": "Elsie", "lastName": "Welch", "findName": "Sammie Moen Sr." } }, { "city": "http://lorempixel.com/640/480/city", "product": "Salad", "user": { "firstName": "Gilbert", "lastName": "Wehner", "findName": "Brianne Rosenbaum" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Ball", "user": { "firstName": "Ava", "lastName": "Runolfsson", "findName": "Kris Dicki" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Towels", "user": { "firstName": "Kendra", "lastName": "Farrell", "findName": "Damaris Grimes" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pizza", "user": { "firstName": "Mallie", "lastName": "Streich", "findName": "Ms. Melyssa Thompson" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Fish", "user": { "firstName": "Benedict", "lastName": "Kuphal", "findName": "Makenzie DuBuque" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Computer", "user": { "firstName": "Luisa", "lastName": "Trantow", "findName": "Gudrun Heaney" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Salad", "user": { "firstName": "Ines", "lastName": "Mills", "findName": "Miss Jennings Hartmann" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Ball", "user": { "firstName": "Jadyn", "lastName": "O'Kon", "findName": "Violette Murphy" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Fish", "user": { "firstName": "Charlene", "lastName": "Schmeler", "findName": "Roslyn Wiegand" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Sausages", "user": { "firstName": "Garland", "lastName": "Rowe", "findName": "Myles Huels" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Shoes", "user": { "firstName": "Josephine", "lastName": "White", "findName": "Celine Kutch" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Hat", "user": { "firstName": "Bernhard", "lastName": "Krajcik", "findName": "Jedediah Zemlak" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Shaun", "lastName": "O'Conner", "findName": "Ms. Clark MacGyver" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Chair", "user": { "firstName": "Jamil", "lastName": "Schinner", "findName": "Mr. Carley Predovic" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Pizza", "user": { "firstName": "Bernhard", "lastName": "Schoen", "findName": "Candida Muller" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Computer", "user": { "firstName": "Destin", "lastName": "Rutherford", "findName": "Lillie Wolff" } }, { "city": "http://lorempixel.com/640/480/city", "product": "Car", "user": { "firstName": "Leora", "lastName": "Parker", "findName": "Claudie Lehner" } }];
+        console.log(arr);
+
+        var x = arr.reduce(function (all, it) {
+            if (all[it.product] == undefined)
+                all[it.product] = [];
+            all[it.product].push(it);
+            return all;
+        }, {})
+        console.log(x);
+        function show() {
+            return new Promise(function (rev, rej) {
+                setTimeout(function () {
+                    rev("PRO =>"+new Date().getTime());
+                }, 500);
+            })
+        }
+        function showPro(cb) {
+            setTimeout(function () {
+                    cb("PRO =>"+new Date().getTime());
+                }, 500);
+        }
+        
+        function showf() {
+            return new Promise(function (rev, rej) {
+                setTimeout(function () {
+                    rej("PRO rej =>", new Date().getTime());
+                }, 500);
+            })
+        }
+
+
+        async function dis(){
+              return  showPro ();
+        }
+
+        dis().then(function(resp){
+             console.log("async=>",resp);
+        })
+
+        
+        show().then(function (resp) {
+            console.log(resp);
+            return show();
+        }).then(function (resp) {
+            console.log(resp);
+            return show();
+        }).then(function (resp) {
+            console.log(resp);
+            return show();
+        }).then(function (resp) {
+            console.log(resp);
+            return showf();
+        }).then(function (resp) {
+            console.log(resp);
+            return show();
+        }, function (err) {
+            console.log("err=>", err);
+        }).then(function (resp) {
+            console.log(resp);
+        })
+
+        setTimeout(function () {
+            console.log("=>", new Date().getTime());
+            setTimeout(function () {
+                console.log("=>", new Date().getTime());
+                setTimeout(function () {
+                    console.log("=>", new Date().getTime());
+                    setTimeout(function () {
+                        console.log("=>", new Date().getTime());
+                        setTimeout(function () {
+                            console.log("=>", new Date().getTime());
+                            setTimeout(function () {
+                                console.log("=>", new Date().getTime());
+                            }, 500);
+                        }, 500);
+                    }, 500);
+                }, 500);
+            }, 500);
+        }, 500);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

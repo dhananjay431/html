@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="">
+        /////////////////////////////////////////////////AJAX/////////////////
+        $.ajax({
+            url: "https://jsonresp.herokuapp.com/datatable",
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            data: {
+            },
+            success: function (result) {
+                console.log(result.data);
+            }
+        });
+
+        $.ajax({
+            url: "https://jsonresp.herokuapp.com/datatable/100",
+            method: "POST",
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            data: JSON.stringify({ "num": { "_": "number" } }),
+            success: function (result) {
+                console.log(result.data);
+            }
+        });
+        /////////////////////////////////////////////////AJAX/////////////////
+
+        if (6 < 7) {
+            console.log("true")
+        } else {
+            console.log("false");
+        }
+
+        console.log((6 < 7) ? true : false);
+
+        console.log(typeof { foo: 234 });
+        console.log(typeof []);
+        console.log(typeof 123);
+        console.log(typeof "String");
+        console.log(typeof true);
+        console.log(typeof (new Date()));
+
+
+
+        var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 45, 234, 324, 234, 123, 23, 23];
+        var res = [];
+        for (var i = 0; i < a.length; i++) {
+            res.push(a[i] * a[i]);
+        }
+
+        console.log("map=>", a.map(function (d) { return d * d; }));
+
+        console.log(a.filter(function (d) { return d < 200; }))
+
+        console.log(a.sort(function (a, b) { return (a > b) ? -1 : 1; }));
+
+        var x = a.reduce(function (comm, it) {
+            if (comm[it] == undefined) {
+                comm[it] = 1;
+            } else {
+                comm[it] += 1
+            }
+            return comm;
+        }, {});
+        console.log(x);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

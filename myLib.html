@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script>
+        (function (d, wn) {
+            wn.http = new d();
+        })((function () {
+            var that = this;
+            that.defaults = {
+                url: "",
+                async: true,
+                isMock: false,
+                type: "POST",
+                contentType: "text/xml; charset=\"utf-8\"",
+                dataType: "* json",
+                cache: false,
+                headers: {
+                    "Content-Type": "application/xml"
+                },
+                showLoadingIndicator: true,
+                responseWaitTime: 500
+            };
+            that.userAgent = navigator.userAgent,
+                isFirefox = (/Firefox/).test(that.userAgent),
+                isOpera = (/Opera/).test(that.userAgent),
+                isSafari = (/Safari/).test(that.userAgent),
+                isIE = (/MSIE/).test(that.userAgent);
+            that.isIE11 = (/Trident.*rv[:]*11/).test(that.userAgent);
+            that.createXMLElement = function (oXMLDoc, oParentEl, vValue, sName) {
+                if (vValue && vValue['@xmlns'] && (isFirefox || isOpera || isSafari)) {
+                    return oXMLDoc.createElementNS(vValue['@xmlns'], sName);
+                }
+                if (oParentEl && oParentEl.namespaceURI) {
+                    var parentNamespace = oParentEl.namespaceURI;
+                    return isIE ? oXMLDoc.createNode(1, sName, parentNamespace) : oXMLDoc.createElementNS(parentNamespace, sName);
+                }
+                return oXMLDoc.createElement(sName);
+            }
+            that.js2xmlstring = function (oObjTree, settings) {
+                var oNewDoc = that.getXMLDocument();
+                var wrappedXML = that.js2xml(oObjTree, that.createXMLElement(oNewDoc, oNewDoc, "", "o"), settings);
+                var sXML = wrappedXML.xml || (new XMLSerializer()).serializeToString(wrappedXML);
+                if (that.isIE11) {
+                    sXML = sXML.replace(new RegExp('xmlns:NS\\d+=""\\sNS\\d+:', 'g'), '');
+                }
+                if (sXML.lastIndexOf("</o>") === sXML.length - 4) {
+                    return sXML.slice(3, sXML.length - 4);
+                } else {
+                    return sXML.slice(3, sXML.length - 2);
+                }
+            };
+            that.getXMLDocument = function () {
+                var oNewDoc = null;
+                if (window.ActiveXObject) {
+                    oNewDoc = new ActiveXObject("Microsoft.XMLDOM");
+                } else {
+                    oNewDoc = document.implementation.createDocument("", "", null);
+                }
+                return oNewDoc;
+            };
+
+            that.getParameterString = function (parameters, settings) {
+                var pStrings = [];
+                if ($.isArray(parameters)) {
+                    for (var i = 0, len = parameters.length; i < len; i++) {
+                        var par = parameters[i];
+                        pStrings.push("<" + par.name + ">");
+                        pStrings.push((typeof (par.value) === "function" ? par.value() : par.value));
+                        pStrings.push("</" + par.name + ">");
+                    }
+                } else if (typeof (parameters) === "object") {
+                    if (true) pStrings.push(that.js2xmlstring(parameters, settings.json));
+                    else {
+                        for (var par in parameters) {
+                            pStrings.push("<" + par + ">");
+                            pStrings.push((typeof (parameters[par]) === "function" ? parameters[par]() : parameters[par]));
+                            pStrings.push("</" + par + ">");
+                        }
+                    }
+                } else if (typeof (parameters) === "function") {
+                    if (typeof (settings.context) === "object") {
+                        pStrings.push(parameters.call(settings.context, settings));
+                    } else {
+                        pStrings.push(parameters(settings));
+                    }
+                } else if (typeof (parameters) === "string") {
+                    pStrings.push(parameters);
+                }
+                return pStrings.join("");
+            }
+            that.makeRequest = function (request, opts) {
+                var dataStrings = [];
+                if (request.method && request.namespace) {
+                    dataStrings.push("<SOAP:Envelope xmlns:SOAP='http://schemas.xmlsoap.org/soap/envelope/'><SOAP:Body><");
+                    dataStrings.push(request.method);
+                    dataStrings.push(" xmlns='");
+                    dataStrings.push(request.namespace);
+                    dataStrings.push("' ");
+                    dataStrings.push(">");
+                    if (request.parameters) {
+                        var parameterXML = that.getParameterString(request.parameters, opts);
+                        if (parameterXML) {
+                            if (parameterXML.charAt(0) !== '<') {
+                                dataStrings.pop();
+                            }
+                            dataStrings.push(parameterXML);
+                        }
+                    }
+                    dataStrings.push("</" + request.method + ">");
+                    dataStrings.push("</SOAP:Body></SOAP:Envelope>");
+                    return dataStrings.join("");
+                }
+            }
+
+            that.xml2js = function (oXMLParent, nVerbosity, bFreeze, bNestedAttributes) {
+                if (typeof nVerbosity === "object") {
+                    var settings = $.extend({}, that.defaults, nVerbosity);
+                    return getObjectTreeBuilder(settings)(oXMLParent);
+                }
+                return that.xml2js(oXMLParent, {
+                    verbosity: nVerbosity,
+                    freeze: bFreeze,
+                    nestedAttributes: bNestedAttributes
+                });
+            };
+
+            that.js2xml = function (oObjTree, parentElement, settings) {
+                var oNewDoc = parentElement ? parentElement.ownerDocument : that.getXMLDocument();
+                parentElement = parentElement || oNewDoc;
+                var settings = $.extend({}, that.defaults, settings);
+                that.getXMLBuilder(settings)(oNewDoc, parentElement, oObjTree);
+                return parentElement;
+            };
+            that.getXMLBuilder = function (settings) {
+                var loadObjTree = function (oXMLDoc, oParentEl, oParentObj) {
+                    var vValue, oChild;
+                    if (oParentObj === undefined) return;
+                    var objType = typeof (oParentObj);
+                    if (oParentObj instanceof String || oParentObj instanceof Number || oParentObj instanceof Boolean || objType == "string" || objType == "number" || objType == "boolean") {
+                        oParentEl.appendChild(oXMLDoc.createTextNode(oParentObj.toString()));
+                    } else if (oParentObj.constructor === Date) {
+                        oParentEl.appendChild(oXMLDoc.createTextNode(oParentObj.toGMTString()));
+                    }
+                    if (oParentObj.constructor === Array) {
+                        for (var nItem = 0; nItem < oParentObj.length; nItem++) {
+                            loadObjTree(oXMLDoc, oParentEl, oParentObj[nItem]);
+                        }
+                    } else {
+                        for (var sName in oParentObj) {
+                            if (!oParentObj.hasOwnProperty(sName)) return;
+                            if (isFinite(sName)) {
+                                continue;
+                            }
+                            vValue = oParentObj[sName];
+                            if (typeof (vValue) === "function") vValue = vValue();
+                            if (sName === settings.valueProperty) {
+                                if (vValue !== null && vValue !== true) {
+                                    oParentEl.appendChild(oXMLDoc.createTextNode(vValue.constructor === Date ? vValue.toGMTString() : String(vValue)));
+                                }
+                            } else if (sName === settings.cdataProperty) {
+                                if (vValue !== null && vValue !== true) {
+                                    oParentEl.appendChild(oXMLDoc.createCDATASection(vValue.constructor === Date ? vValue.toGMTString() : String(vValue)));
+                                }
+                            } else if (sName === settings.attributesProperty) {
+                                for (var sAttrib in vValue) {
+                                    oParentEl.setAttribute(sAttrib, vValue[sAttrib]);
+                                }
+                            } else if (sName.charAt(0) === settings.attributePrefix) {
+                                oParentEl.setAttribute(sName.slice(1), new String(vValue));
+                            } else if (typeof (vValue) === "undefined") {
+                                oParentEl.appendChild(that.createXMLElement(oXMLDoc, oParentEl, vValue, sName));
+                            } else if (vValue !== null && vValue.constructor === Array) {
+                                for (var nItem = 0; nItem < vValue.length; nItem++) {
+                                    oChild = that.createXMLElement(oXMLDoc, oParentEl, "", sName);
+                                    oParentEl.appendChild(oChild);
+                                    loadObjTree(oXMLDoc, oChild, vValue[nItem]);
+                                }
+                            } else {
+                                oChild = that.createXMLElement(oXMLDoc, oParentEl, vValue, sName);
+                                if (vValue instanceof Object) {
+                                    loadObjTree(oXMLDoc, oChild, vValue);
+                                } else if (vValue !== null && vValue !== true) {
+                                    oChild.appendChild(oXMLDoc.createTextNode(vValue.toString()));
+                                } else if (vValue === null) {
+                                    oChild.setAttribute("null", "true");
+                                    if (oChild.setAttributeNS) {
+                                        oChild.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:nil", "true");
+                                    } else {
+                                        oChild.setAttribute("xsi:nil", "true");
+                                        oChild.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                                    }
+                                }
+                                oParentEl.appendChild(oChild);
+                            }
+                        }
+                    }
+                }
+                return loadObjTree;
+            }
+            that.http = function (options) {
+                var dataStrings = [];
+                var opts = $.extend(options, that.defaults);
+                if (opts.request) {
+                    var request = opts.request;
+                    if ($.isArray(request)) {
+                        dataStrings.push("<SOAP:Envelope xmlns:SOAP='http://schemas.xmlsoap.org/soap/envelope/'><SOAP:Body><multicall:__Cordys_MultipleRequestWrapper xmlns:multicall='http://schemas.cordys.com/1.0/ldap'>");
+                        for (var count = 0; count < request.length; count++) {
+                            dataStrings.push((typeof (request[count].data) === "undefined") ? that.makeRequest(request[count], opts) : request[count].data);
+                        }
+                        dataStrings.push("</multicall:__Cordys_MultipleRequestWrapper></SOAP:Body></SOAP:Envelope>");
+                    } else {
+                        dataStrings.push((typeof (request.data) === "undefined") ? that.makeRequest(request, opts) : request.data);
+                    }
+                } else {
+                    dataStrings.push((typeof (opts.data) === "undefined") ? that.makeRequest(opts, opts) : opts.data);
+                }
+                opts.data = dataStrings.join("");
+                var settings = {
+                "url": opts.url,
+                "method": opts.type,
+                "headers":opts.headers,
+                "data": opts.data,
+                };
+                return $.ajax(settings)
+            };
+            return
+        }), window);
+
+        var d = http.http({
+            url: "http://localhost:5000/proxy/home/DevAdnate/com.eibus.web.soap.Gateway.wcp?organization=o%3DDevAdnate%2Ccn%3Dcordys%2Ccn%3DdefaultInst%2Co%3DADNATEITSOLUTIONS.COM",
+            method: "GenerateSAML",
+            namespace: "http://schemas.cordys.com/AP_Metadata",
+            parameters: { 
+                userId:"c2Z61rlfJFZaiMhT0CfJqtaJ5Wvl9ihlu75qFHXsAN+57vHj1FXuBXfVP+C0qEYRLoOnTfYvP9BPfYwI114Dv9cuWpQt+SyoC5NiRrNBTq/d9aYUn7p43sSgNgQEal77Vq0x2ZoE3Wr9IyZq5Jnf9mghLZpuH1DuaAFWbOEzGMc=",
+                token:"c2Z61rlfJFZaiMhT0CfJqtaJ5Wvl9ihlu75qFHXsAN+57vHj1FXuBXfVP+C0qEYRLoOnTfYvP9BPfYwI114Dv9cuWpQt+SyoC5NiRrNBTq/d9aYUn7p43sSgNgQEal77Vq0x2ZoE3Wr9IyZq5Jnf9mghLZpuH1DuaAFWbOEzGMc=",
+
+             }
+        });
+        console.log(d); 
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>

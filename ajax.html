@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    
+
+        $.ajax({
+            url: "https://jsonresp.herokuapp.com/datatable",
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            data: {
+            },
+            success: function (result) {
+                console.log(result.data);
+            }
+        });
+
+        $.ajax({
+            url: "https://jsonresp.herokuapp.com/datatable/100",
+            method: "POST",
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            data: JSON.stringify({ "num": { "_": "number" } }),
+            success: function (result) {
+                console.log(result.data);
+            }
+        });
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
