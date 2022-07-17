@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arr = [
+            {
+                "travel_summary": {
+                    "bsa_project_travel_config": [
+                        {
+                            "idd": "142",
+                            "descb": "Test air1",
+                            "travel_type": "AIR",
+                            "int_dom": "DOM",
+                            "total": "0",
+                            "m0": "0",
+                            "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                        },
+                        {
+                            "idd": "144",
+                            "descb": "Test",
+                            "travel_type": "AIR",
+                            "int_dom": "DOM",
+                            "total": "0",
+                            "m0": "0",
+                            "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                        },
+                        {
+                            "idd": "143",
+                            "descb": "Test train",
+                            "travel_type": "TRAIN",
+                            "int_dom": "DOM",
+                            "total": "0",
+                            "m0": "0",
+                            "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                        },
+                        {
+                            "idd": "68",
+                            "descb": "test hotel",
+                            "travel_type": "HOTEL",
+                            "int_dom": "DOM",
+                            "total": "0",
+                            "m0": "0",
+                            "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                        },
+                        {
+                            "idd": "67",
+                            "descb": "test guest house",
+                            "travel_type": "GH",
+                            "int_dom": "INTER",
+                            "total": "0",
+                            "m0": "0",
+                            "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                        }
+                    ]
+                },
+                "months_header": {
+                    "months": {
+                        "month": {
+                            "month_no": "0",
+                            "travel_configs": [
+                                {
+                                    "config_type": "HOTEL",
+                                    "travel_config": {
+                                        "travel_type": "No of days",
+                                        "bsa_project_accomodation_config": {
+                                            "acc_config_id": "68",
+                                            "sub_head": "test hotel",
+                                            "accomodation_type": "HOTEL",
+                                            "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                                        }
+                                    }
+                                },
+                                {
+                                    "config_type": "GUEST HOUSE",
+                                    "travel_config": {
+                                        "travel_type": "No of days",
+                                        "bsa_project_accomodation_config": {
+                                            "acc_config_id": "67",
+                                            "sub_head": "test guest house",
+                                            "accomodation_type": "GH",
+                                            "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                                        }
+                                    }
+                                },
+                                {
+                                    "config_type": "TRAVEL",
+                                    "travel_config": [
+                                        {
+                                            "travel_type": "AIR",
+                                            "bsa_project_travel_config": [
+                                                {
+                                                    "travel_config_id": "142",
+                                                    "sub_head": "Test air1",
+                                                    "travel_type": "AIR",
+                                                    "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                                                },
+                                                {
+                                                    "travel_config_id": "144",
+                                                    "sub_head": "Test",
+                                                    "travel_type": "AIR",
+                                                    "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "travel_type": "TRAIN",
+                                            "bsa_project_travel_config": {
+                                                "travel_config_id": "143",
+                                                "sub_head": "Test train",
+                                                "travel_type": "TRAIN",
+                                                "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "travel_configs_count": 3,
+                            "travel_config_count": 4
+                        }
+                    }
+                },
+                "travel_hr_plan": {
+                    "bsa_projbudget_travelplan_main": {
+                        "commercial_plan": null,
+                        "budget_area": null,
+                        "resource_name": null,
+                        "travelplan_id": "188",
+                        "hrplan_id": "213",
+                        "month": {
+                            "month_no": "0"
+                        },
+                        "@xmlns": "http://schemas.cordys.com/bsaWsApp"
+                    }
+                }
+            }
+        ];
+
+
+        let oa = d => Array.isArray(d) ? d : [d];
+        let cnt = 0;
+        let v1 = oa(arr[0].months_header.months.month)
+        for (let i1 = 0; i1 < v1.length; i1++) {
+            for (let i2 = 0; i2 < v1[i1].travel_configs.length; i2++) {
+                for (let i3 = 0; i3 < oa(v1[i1].travel_configs[i2].travel_config).length; i3++) {
+                    const t3 = oa(v1[i1].travel_configs[i2].travel_config)[i3];
+                    if (t3.bsa_project_accomodation_config != undefined)
+                        cnt += oa(t3.bsa_project_accomodation_config).length;
+                    if (t3.bsa_project_travel_config != undefined)
+                        cnt += oa(t3.bsa_project_travel_config).length;
+                }
+
+            }
+        }
+        console.log("count=>", cnt);
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

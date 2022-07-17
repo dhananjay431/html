@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const t1 = performance.now();
+      var arr1 = [];
+      var zzzzz = 2;
+      var xxxxx = 10;
+
+      var z = 1,
+        cnt = 0;
+      while (cnt < zzzzz) {
+        var flag = true;
+        for (var i = 2; i <= xxxxx; i++) {
+          if (z % i > 0) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag == true) {
+          arr1.push(z);
+          cnt += 1;
+        }
+
+        z += 1;
+      }
+      console.log(arr1);
+      const t2 = performance.now();
+      ////////////////////////////////////////
+
+      var arr2 = [];
+      var z1 = 1,
+        cnt1 = 0;
+      while (cnt1 < zzzzz) {
+        if (
+          Array(xxxxx)
+            .fill(1)
+            .map((d, i) => z1 % (i + 1))
+            .filter(d => d == 0).length == 10
+        ) {
+          arr2.push(z1);
+
+          cnt1 += 1;
+        }
+
+        z1 += 1;
+      }
+      console.log(arr2);
+      const t3 = performance.now();
+
+      console.log("for=>", t2 - t1);
+      console.log("higher=>", t3 - t2);
+    </script>
+  </head>
+  <body></body>
+</html>

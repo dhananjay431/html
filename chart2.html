@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      .myChart {
+        width: 500px;
+        height: 300px;
+      }
+      #myChart {
+        width: 400px;
+        height: 300px;
+      }
+      .flex-container {
+        display: flex;
+        height: 300px;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="myChart flex-container">
+      <canvas id="myChart" width="600" height="400"></canvas>
+    </div>
+
+    <script>
+      num = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+      num_arr = (size, min, max) =>
+        Array(size)
+          .fill(0)
+          .map(d => num(min, max));
+      var arr_length = 3;
+
+      function str(num) {
+        const str2 =
+          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ _1234567890";
+        return Array(num)
+          .fill(0)
+          .map(d => str2[Math.floor(Math.random() * str2.length)])
+          .join("");
+      }
+      function strArr(size, max) {
+        return Array(size)
+          .fill(0)
+          .map(d => {
+            return str(max);
+          });
+      }
+
+      const COLORS = [
+        "#4dc9f6",
+        "#f67019",
+        "#f53794",
+        "#537bc4",
+        "#acc236",
+        "#166a8f",
+        "#00a950",
+        "#58595b",
+        "#8549ba",
+      ];
+
+      var labels = num_arr(arr_length, 1000000, 9000000);
+      const data = {
+        labels: strArr(arr_length, 5),
+        datasets: [
+          {
+            label: str(5),
+            type: "line",
+            data: num_arr(arr_length, 0, 100),
+            borderColor: COLORS[0],
+            fill: false,
+            stack: "Stack 2",
+            yAxisID: "Stack_2",
+            // tension: 1,
+          },
+          {
+            label: str(5),
+            type: "line",
+            data: num_arr(arr_length, 0, 100),
+            borderColor: COLORS[1],
+            fill: false,
+            stack: "Stack 2",
+            yAxisID: "Stack_2",
+            // tension: 0.5,
+          },
+
+          {
+            label: str(5),
+            data: num_arr(arr_length, 1000, 10000),
+            backgroundColor: COLORS[0],
+            stack: "Stack 0",
+            yAxisID: "Stack_0",
+          },
+          {
+            label: str(5),
+            data: num_arr(arr_length, 1000, 10000),
+            backgroundColor: COLORS[1],
+            stack: "Stack 0",
+            yAxisID: "Stack_0",
+          },
+          {
+            label: str(5),
+            data: num_arr(arr_length, 1000, 10000),
+            backgroundColor: COLORS[5],
+            stack: "Stack 0",
+            yAxisID: "Stack_0",
+          },
+          {
+            label: str(5),
+            data: num_arr(arr_length, 2, 20),
+            backgroundColor: COLORS[2],
+            stack: "Stack 1",
+            yAxisID: "Stack_1",
+          },
+          {
+            label: str(5),
+            data: num_arr(arr_length, 2, 20),
+            backgroundColor: COLORS[3],
+            stack: "Stack 1",
+            yAxisID: "Stack_1",
+          },
+        ],
+      };
+
+      const config = {
+        type: "bar",
+        data: data,
+        options: {
+          plugins: {
+            title: {
+              display: false,
+              text: "Chart.js Bar Chart - Stacked",
+            },
+          },
+          responsive: true,
+          interaction: {
+            intersect: false,
+          },
+          scales: {
+            yAxes: [
+              {
+                id: "Stack_0",
+                stacked: true,
+                display: true,
+                position: "left",
+              },
+              {
+                id: "Stack_1",
+                stacked: true,
+                display: true,
+                position: "right",
+              },
+            ],
+            // x: {
+            //   stacked: false,
+            // },
+            // y: {
+            //   stacked: false,
+            // },
+          },
+        },
+      };
+
+      //   start
+      var config3 = {
+        type: "bar",
+        data: {
+          labels: ["e1", "e2", "e3"],
+          datasets: [
+            {
+              label: "Count.Lost",
+              type: "bar",
+              data: [1097, 39492, 39492],
+              backgroundColor: "#4dc9f6",
+              fill: false,
+              stack: "Count",
+              yAxisID: "Count",
+            },
+            {
+              label: "Count.Others",
+              type: "bar",
+              data: [0, 41686, 41686],
+              backgroundColor: "#f67019",
+              fill: false,
+              stack: "Count",
+              yAxisID: "Count",
+            },
+            {
+              label: "Count.Won",
+              type: "bar",
+              data: [6582, 217206, 217206],
+              backgroundColor: "#f53794",
+              fill: false,
+              stack: "Count",
+              yAxisID: "Count",
+            },
+            {
+              label: "Value.Others",
+              type: "bar",
+              data: [0, 15986100, 15986100],
+              backgroundColor: "#537bc4",
+              fill: false,
+              stack: "Value",
+              yAxisID: "Value",
+            },
+            {
+              label: "Value.Submitted",
+              type: "bar",
+              data: [0, 0, 0],
+              backgroundColor: "#acc236",
+              fill: false,
+              stack: "Value",
+              yAxisID: "Value",
+            },
+            {
+              label: "Value.Won",
+              type: "bar",
+              data: [777655502, 19421455056, 19421455056],
+              backgroundColor: "#166a8f",
+              fill: false,
+              stack: "Value",
+              yAxisID: "Value",
+            },
+            {
+              label: "grossMargin.Others",
+              type: "line",
+              data: [0, 80, 80],
+              borderColor: "#00a950",
+              fill: false,
+              stack: "grossMargin",
+              yAxisID: "grossMargin",
+            },
+            {
+              label: "grossMargin.Submitted",
+              type: "line",
+              data: [-39, -12, -12],
+              borderColor: "#58595b",
+              fill: false,
+              stack: "grossMargin",
+              yAxisID: "grossMargin",
+            },
+            {
+              label: "grossMargin.Won",
+              type: "line",
+              data: [-20, -7, -7],
+              borderColor: "#8549ba",
+              fill: false,
+              stack: "grossMargin",
+              yAxisID: "grossMargin",
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            title: {
+              display: false,
+              text: "Chart.js Bar Chart - Stacked",
+            },
+          },
+          responsive: true,
+          interaction: {
+            intersect: false,
+          },
+          scales: {
+            yAxes: [
+              {
+                id: "Count",
+                stacked: true,
+                display: true,
+                position: "left",
+              },
+              {
+                id: "Value",
+                stacked: true,
+                display: true,
+                position: "right",
+              },
+            ],
+          },
+        },
+      };
+
+      console.log("config=>", config);
+      console.log("config3=>", config3);
+      const myChart = new Chart(document.getElementById("myChart"), config3);
+
+      var data2 = [
+        {
+          Value: {
+            Submitted: "1025200",
+            Won: "91270226",
+            Other: "245940",
+            Lost: "2536931",
+          },
+          Count: { Submitted: "2", Lost: "3", Others: "3", Won: "15" },
+          grossMargin: { Lost: "-36", Other: "80", Submitted: "-4", Won: "-8" },
+          sales: {
+            pa_user_role_mapping: {
+              ud_userid: "salesusers1",
+              ud_user_name: "sales users1",
+            },
+          },
+          region: {
+            pa_region_master: [
+              { region_id: "SEA", region_name: "SEA" },
+              { region_id: "MEA", region_name: "MEA" },
+              { region_id: "EU", region_name: "Europe" },
+              { region_id: "IPV", region_name: "India Pvt" },
+              { region_id: "IPB", region_name: "India Public" },
+            ],
+          },
+          product: {
+            pa_product_master: [
+              { prod_id: "5", product_line: "Neox" },
+              { prod_id: "4", product_line: "dMarketPlace" },
+              { prod_id: "1", product_line: "BRM" },
+              { prod_id: "10", product_line: "ADNATE2" },
+              { prod_id: "2", product_line: "PCC" },
+              { prod_id: "9", product_line: "Others" },
+              { prod_id: "11", product_line: "dEP" },
+              { prod_id: "6", product_line: "sample 2" },
+              { prod_id: "16", product_line: "Testing" },
+              { prod_id: "3", product_line: "WiFi" },
+              { prod_id: "7", product_line: "IPLMS" },
+            ],
+          },
+          Entity1: {
+            Value: { Won: "777655502", Submitted: "null", Others: "null" },
+            grossMargin: { Others: "null", Submitted: "-58", Won: "-20" },
+            Count: { Others: "0", Won: "6564", Lost: "1094" },
+          },
+          Entity2: {
+            Value: { Won: "777655502", Submitted: "null", Others: "null" },
+            grossMargin: { Others: "null", Submitted: "-58", Won: "-20" },
+            Count: { Others: "0", Won: "6564", Lost: "1094" },
+          },
+          Entity3: {
+            Value: { Won: "694426012", Submitted: "null", Others: "null" },
+            grossMargin: { Others: "null", Submitted: "-58", Won: "-19" },
+            Count: { Others: "0", Won: "5904", Lost: "984" },
+          },
+        },
+      ];
+
+      var keys = [
+        "Count.Lost",
+        "Count.Others",
+        "Count.Won",
+        "Value.Others",
+        "Value.Submitted",
+        "Value.Won",
+      ];
+
+      var xx = _.chain(Object.keys(data2[0]))
+        .filter(d => d.match(/Entity/i))
+        .map(d => {
+          return keys.map(d1 => {
+            return _.at(data2[0][d], d1);
+          });
+        })
+        .value();
+
+      xx = _.chain()
+        .zip(...xx)
+        .map((d, i) => {
+          return { [keys[i]]: d.flat() };
+        })
+        .value();
+      console.log(xx);
+    </script>
+  </body>
+</html>

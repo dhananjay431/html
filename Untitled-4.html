@@ -1,0 +1,77 @@
+<ng-container *ngIf="colSp">
+  <div class="col-4 p-0 m-0">
+    <table class="dataTable w-100" border="1">
+      <tr colspan="1">
+        <ng-container
+          *ngFor="
+              let zz of ['ENTITY_1', 'ENTITY_2', 'ENTITY_3'];
+              let _id = index
+            "
+          >{{ zz }}
+        </ng-container>
+        <td></td>
+      </tr>
+      <tr>
+        <ng-container
+          *ngFor="
+              let zz of ['ENTITY_1', 'ENTITY_2', 'ENTITY_3'];
+              let _id = index
+            "
+        >
+          <td>
+            <ng-container
+              *ngFor="let region of pgData[0].region.pa_region_master"
+            >
+              <span
+                *ngIf="
+                          buttonCheck('region', zz, region.region_name, qrp)
+                        "
+              >
+                {{ region.region_name }},
+              </span>
+            </ng-container>
+          </td></ng-container
+        >
+      </tr>
+      <tr>
+        <ng-container
+          *ngFor="
+              let zz of ['ENTITY_1', 'ENTITY_2', 'ENTITY_3'];
+              let _id = index
+            "
+        >
+          <td>
+            <ng-container
+              *ngFor="let region of pgData[0].product.pa_product_master"
+            >
+              <span *ngIf="buttonCheck('product', zz, region.prod_id, qrp)">
+                {{ region.product_line }}
+              </span>
+            </ng-container>
+          </td>
+        </ng-container>
+      </tr>
+      <tr>
+        <!-- <td>SALES</td> -->
+        <ng-container
+          *ngFor="
+              let zz of ['ENTITY_1', 'ENTITY_2', 'ENTITY_3'];
+              let _id = index
+            "
+        >
+          <td>
+            <ng-container
+              *ngFor="
+                        let region of pgData[0].sales.pa_user_role_mapping
+                      "
+            >
+              <span *ngIf="buttonCheck('sales', zz, region.ud_userid, qrp)">
+                {{ region.ud_user_name }}
+              </span>
+            </ng-container>
+          </td>
+        </ng-container>
+      </tr>
+    </table>
+  </div>
+</ng-container>

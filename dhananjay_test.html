@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+
+        function genRand(len) {
+            return Math.random().toString(36).substring(2, len + 2);
+        }
+
+
+
+        function data_ins() {
+            var node = genRand(10);
+            var num = Math.floor(Math.random() * 1000000000);
+            var data = `<SOAP:Envelope xmlns:SOAP='http://schemas.xmlsoap.org/soap/envelope/'><SOAP:Body><UpdateReel_vob_request xmlns='http://schemas.cordys.com/VOBWsAppPackage' ><tuple><new><reel_vob_request><company_code>0001</company_code><plant_code>001</plant_code><vendor_name>${node}</vendor_name><vendor_email>${node}@gmail.com</vendor_email><vendor_contactPerson_no>${num
+                }</vendor_contactPerson_no><vendor_contactPerson>${node + 'test'}</vendor_contactPerson><vendor_buyer_email>${node}@adnatesolutions.com</vendor_buyer_email><buyer_id>dhananjay</buyer_id><created_by>dhananjay</created_by><vendor_buyer_name>Dhananjay</vendor_buyer_name></reel_vob_request></new></tuple></UpdateReel_vob_request></SOAP:Body></SOAP:Envelope>`;
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                }
+            });
+
+            xhr.open("POST", "http://localhost:4200/com.eibus.web.soap.Gateway.wcp?SAMLart=e0pBVkEtQUVTL0dDTS9Ob1BhZGRpbmd9NdUMP2GktxSEgj0506gXpV2yEure6JM6UAFewAzxe+UYCroEn43XMp2WDD75NmHjSsvEZ4tzxz7+e8Qkz2TmgJrEImdOtPUgA3MSr0UcpGVPUaRKW4ud3gA=&timeout=500000");
+            xhr.setRequestHeader("Accept", "*/*");
+            xhr.setRequestHeader("Accept-Language", "en-US,en;q=0.9");
+            xhr.setRequestHeader("Connection", "keep-alive");
+            xhr.setRequestHeader("Content-Type", "text/xml; charset=\"UTF-8\"");
+            xhr.setRequestHeader("Cookie", "lang=en");
+            xhr.setRequestHeader("Origin", "http://localhost:4200");
+            xhr.setRequestHeader("Referer", "http://localhost:4200/Onboarding");
+            xhr.setRequestHeader("Sec-Fetch-Dest", "empty");
+            xhr.setRequestHeader("Sec-Fetch-Mode", "cors");
+            xhr.setRequestHeader("Sec-Fetch-Site", "same-origin");
+            xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36");
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhr.setRequestHeader("cache-control", "no-cache");
+            xhr.setRequestHeader("sec-ch-ua", "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"100\", \"Google Chrome\";v=\"100\"");
+            xhr.setRequestHeader("sec-ch-ua-mobile", "?0");
+            xhr.setRequestHeader("sec-ch-ua-platform", "\"Windows\"");
+
+            xhr.send(data);
+        }
+
+        for (var i = 0; i < 100000; i++) {
+            data_ins();
+        }
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

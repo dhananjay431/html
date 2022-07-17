@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+  
+  background-color: yellow;
+  height: 1600px;
+  margin: 0 auto;
+}
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="test" style="font-size:20px;">
+            dhananjay
+        </div>
+    </div>
+    <script type="text/javascript">
+    var ro = new ResizeObserver(d => {
+        for (let i of d) {
+            if (i.target.offsetWidth < 500) {
+                i.target.style.fontSize = "40px";
+                i.target.style.position = 'sticky';
+                i.target.style.top = '0';
+            } else {
+                i.target.style.fontSize = "30px";
+                i.target.style.position = '';
+                i.target.style.top = '';
+            }
+        }
+    });
+    ro.observe(document.querySelector('.test'));
+    </script>
+</body>
+
+</html>

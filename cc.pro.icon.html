@@ -1,0 +1,29 @@
+<button
+  type="submit"
+  ng-click="hideShowModal('d')"
+  class="btn btn-float-print1 tooltip"
+  style="position: absolute; outline: none; margin-bottom: 23px"
+>
+  <span>
+    <img
+      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDI0IDI0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48Zz48ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0xMiAyMWMtNS4xOTYgMC05LjgxNS0zLjA2Ny0xMS43NjctNy44MTQtLjMxLS43NTMtLjMxLTEuNjE4IDAtMi4zNzEgMS45NTItNC43NDggNi41NzEtNy44MTUgMTEuNzY3LTcuODE1czkuODE1IDMuMDY3IDExLjc2NyA3LjgxNGMuMzEuNzUzLjMxIDEuNjE4IDAgMi4zNzEtMS45NTIgNC43NDgtNi41NzEgNy44MTUtMTEuNzY3IDcuODE1em0wLTE3Yy00Ljc4OSAwLTkuMDQ1IDIuODI0LTEwLjg0MiA3LjE5NC0uMjEuNTEyLS4yMSAxLjA5OSAwIDEuNjExIDEuNzk3IDQuMzcxIDYuMDUzIDcuMTk1IDEwLjg0MiA3LjE5NXM5LjA0NS0yLjgyNCAxMC44NDItNy4xOTRjLjIxLS41MTIuMjEtMS4wOTkgMC0xLjYxMS0xLjc5Ny00LjM3MS02LjA1My03LjE5NS0xMC44NDItNy4xOTV6IiBmaWxsPSIjZmRmZGZkIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PC9nPjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEyIDE2Yy0yLjIwNiAwLTQtMS43OTQtNC00czEuNzk0LTQgNC00IDQgMS43OTQgNCA0LTEuNzk0IDQtNCA0em0wLTdjLTEuNjU0IDAtMyAxLjM0Ni0zIDNzMS4zNDYgMyAzIDMgMy0xLjM0NiAzLTMtMS4zNDYtMy0zLTN6IiBmaWxsPSIjZmRmZGZkIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PC9nPjwvZz48L3N2Zz4="
+      style="height: 18px; width: 18px"
+    />
+  </span>
+  <span class="tooltiptext" style="left: -45px">Print With Preview</span>
+</button>
+
+<button
+  type="submit"
+  ng-click="print1()"
+  class="btn btn-float-print tooltip"
+  style="position: absolute; outline: none; margin-bottom: 23px"
+>
+  <span>
+    <img
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAIAAABKGoy8AAAABmJLR0QA/wD/AP+gvaeTAAACOklEQVRYhWOUdj/KMFgB00A7AB8YdRy5gAW/tJeNcFe+sgAvAWVkgOdvfpVNvLv/9Hs8agiEXGu2Ei1cxsDAICnC1pmnhF8NAceJCrJSzz3oQEqUHb+CoZzmkIGMxzGqWPlkhxWRKgd1yI06jlww6jhywajjyAWjjiMXMGK2hLk4mOJ9JP0cRFRkOTnZaev6bz/+3nn8fdPBNws3v/j+8x8Bx8lJcCxq1lSR5aSpmzDB7UffY2uuPXn1E1kQJWDY2ZgGxGUMDAyqcpyLmjXZWFHcg8KJ9hQfEJdBgJo8V5SHGLIIiuN87UTo6x50gOYAFMepyw9YsEGAljI3MhfFcXw8NGmREw94uZiRuYO6nBt1HLlg1HHkApzZk1p9LWIArv7YoA65UceRC7C05wYPGNwhd+ziB0s9/oF2BhZw8vInpq6FjwbaGdjBxOVPmE5f/Xz4/MeBdgk6uHDzy6FzH5gYGBh6Fg26wJuw7DEDJEOcvf75wJkPA+0eBLh27+veU+8Z4Lm1a+Gj//8H1EVIYOLyJxDHQB136faXfXgHtukGbj/6vv3IWwgbUc71LBoUgTdpxZN/MGcgHHf5ztcdx94OjItg4O6T75sPvoFzUWqIhpkPvnz/S3cnQcG//wxlE+/++YuIPhTHPX31M7nxxscvf+juMIafv/4VdN8+efkTsiAzn0oyMv/xi5/r973+8+c/Pw8LFyczKwsjTd30+8//h89/bDjwprD3zvFLn9BkR1sl5IJRx5ELAOg1rkK8c+q6AAAAAElFTkSuQmCC"
+      style="height: 18px; width: 18px"
+    />
+  </span>
+  <span class="tooltiptext" style="left: -45px">Print</span>
+</button>
